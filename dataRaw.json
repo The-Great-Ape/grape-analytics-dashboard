@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Pesky Penguins",
+    "image": "https://dl.airtable.com/.attachmentThumbnails/2db937cefcae5e2b8c0efbc11e15d68b/b9566c55",
+    "community_strength": 49,
+    "tvl": 28197,
+    "nft_average": 2,
+    "unique_holders": 1777,
+    "grape_holder_score": 49
+  },
+  {
+    "name": "Turtles",
+    "image": "https://nznh6xujkvtqqg2yph63lm4d7nh2j62qacaxl5irbzcgf3abbnfa.arweave.net/blp_XolVZwgbWHn9tbOD-0-k-1AAgXX1EQ5EYuwBC0o/?ext=png",
+    "community_strength": 49,
+    "tvl": 15096,
+    "nft_average": 2,
+    "unique_holders": 703,
+    "grape_holder_score": 44
+  },
+  {
+    "name": "The Famous Fox",
+    "image": "https://ipfs.io/ipfs/Qmetu9eyf7jxE9cNV9MYMWborQBGHqurt1MvD2LjwDcumy",
+    "community_strength": 44,
+    "tvl": 8196,
+    "nft_average": 3,
+    "unique_holders": 1011,
+    "grape_holder_score": 36
+  },
+  {
+    "name": "Playground Waves",
+    "image": "https://xz6hwsn3nz4r64nclhxx5am64causri7kmc5k5jfzbh3i2bv323q.arweave.net/vnx7SbtueR9xolnvfoGe4IFJRR9TBdV1JchPtGg13rc/?ext=png",
+    "community_strength": 35,
+    "tvl": 5545,
+    "nft_average": 2,
+    "unique_holders": 215,
+    "grape_holder_score": 45
+  },
+  {
+    "name": "Monkette Business",
+    "image": "https://dl.airtable.com/.attachmentThumbnails/40bfaa16ec30707bd459441f63649e43/8b97b6ed",
+    "community_strength": 49,
+    "tvl": 6391,
+    "nft_average": 2,
+    "unique_holders": 811,
+    "grape_holder_score": 41
+  },
+  {
+    "name": "CryptoCubs",
+    "image": "https://iyi4ji62ki6ontrswacer4tqluzhu4trauwf4jxejjattrqr6caq.arweave.net/RhHEo9pSPObOMrAESPJwXTJ6cnEFLF4m5EpBOcYR8IE/?ext=png",
+    "community_strength": 40,
+    "tvl": 3954,
+    "nft_average": 5,
+    "unique_holders": 803,
+    "grape_holder_score": 62
+  },
+  {
+    "name": "Red Panda Squad",
+    "image": "https://ydbljwum5uyirfpt7vcb4c264xiy6e3h3cjo2dwtnitnw7lh762q.arweave.net/wMK02oztMIiV8_1EHgte5dGPE2fYku0O02om231n_7U/?ext=png",
+    "community_strength": 37,
+    "tvl": 3667,
+    "nft_average": 3,
+    "unique_holders": 1299,
+    "grape_holder_score": 41
+  },
+  {
+    "name": "Lunaria",
+    "image": "https://ekkols4yerjgny5hnqt3owe2dg4litwx7bw6q5qmsyemiivh46oq.arweave.net/IpTly5gkUmbjp2wnt1iaGbi0Ttf4beh2DJYIxCKn550/?ext=png",
+    "community_strength": 28,
+    "tvl": 791,
+    "nft_average": 2,
+    "unique_holders": 1242,
+    "grape_holder_score": 35
+  }
+]
