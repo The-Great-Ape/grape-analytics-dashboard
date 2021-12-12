@@ -1,33 +1,60 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 /* eslint-disable @next/next/no-img-element */
+import * as React from 'react';
 import type { NextPage } from 'next';
-import { jsx, Global } from '@emotion/react';
-import { Heading, Text } from '@chakra-ui/react';
+import { jsx } from '@emotion/react';
+
+import Stack from '@mui/material/Stack';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 import DataTable from '../components/DataTable';
 
-import styles from '../styles/home';
-import globalStyles from '../styles/global';
-
 const Home: NextPage = () => {
   return (
-    <div css={styles.container}>
-      <Global styles={globalStyles} />
-
-      <main css={styles.main}>
-        <Heading textAlign="center" marginBottom="2rem" textTransform="uppercase">
-          Partner Report
-        </Heading>
-        <div css={styles.dataTableContainer}>
-          <DataTable />
-        </div>
-      </main>
-
-      <footer css={styles.footer}>
-        <Text>&copy; {new Date().getFullYear()} Grape Protocol</Text>
-      </footer>
-    </div>
+    <Stack
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+      }}
+    >
+      <Container sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+        <Box
+          component="main"
+          sx={{ pt: 8, height: '100%', display: 'flex', flexDirection: 'column', flex: 1 }}
+        >
+          <Typography
+            variant="h4"
+            component="h1"
+            sx={{ textAlign: 'center', mb: 4, textTransform: 'uppercase' }}
+          >
+            Partner Report
+          </Typography>
+          <Box sx={{ display: 'flex', flex: 1, height: '100%' }}>
+            <Box sx={{ flexGrow: 1 }}>
+              <DataTable />
+            </Box>
+          </Box>
+        </Box>
+      </Container>
+      <Box
+        component="footer"
+        sx={{
+          py: 3,
+          px: 2,
+          mt: 'auto',
+        }}
+      >
+        <Container maxWidth="sm">
+          <Typography textAlign="center">
+            &copy; {new Date().getFullYear()} Grape Protocol
+          </Typography>
+        </Container>
+      </Box>
+    </Stack>
   );
 };
 

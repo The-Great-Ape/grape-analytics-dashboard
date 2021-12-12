@@ -1,150 +1,139 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-  Text,
-  Progress,
-  Flex,
-  Box,
-  Image,
-} from '@chakra-ui/react';
+import { jsx } from '@emotion/react';
 
-import dataRaw from '../../dataRaw.json';
-import styles from '../styles/dataTable';
+import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+
+import { styled } from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+
+import Avatar from '@mui/material/Avatar';
+import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress';
+
+import dataRaw from '../dataRaw.json';
 
 const DataTable = () => {
-  return (
-    <Table variant="simple" css={styles.table}>
-      <Thead>
-        <Tr>
-          <Th color="white" borderBottom="none">
-            Collection
-          </Th>
-          <Th color="white" borderBottom="none" width={220}>
-            Grape Community Strength*
-          </Th>
-          <Th color="white" borderBottom="none">
-            TVL (SOL)**
-          </Th>
-          <Th color="white" borderBottom="none">
-            NFTs Average
-          </Th>
-          <Th color="white" borderBottom="none">
-            Unique Holders
-          </Th>
-          <Th color="white" borderBottom="none" width={220}>
-            Grape Holder Score
-          </Th>
-        </Tr>
-      </Thead>
-      <Tbody>
-        {dataRaw.map((item, key) => (
-          <Tr key={key} mb={5} css={styles.tableRow}>
-            <Td>
-              <Box position="relative" paddingLeft="70px">
-                <Image
-                  borderRadius="full"
-                  boxSize="75px"
-                  objectFit="cover"
-                  src={item.image}
-                  alt={item.name}
-                  mr={4}
-                  position="absolute"
-                  top="50%"
-                  left={-6}
-                  backgroundColor="gray"
-                  transform="translateY(-50%)"
-                />
-                {item.name}
-              </Box>
-            </Td>
-            <Td>
-              <Flex alignItems="center">
-                <Progress
-                  borderTopLeftRadius="1rem"
-                  borderBottomLeftRadius="1rem"
-                  flex="auto"
-                  sx={{
-                    '& > div': {
-                      background:
-                        'linear-gradient(276deg, #0FE2DF 5.96%, #8870F2 86.08%, #9E5BF6 96.45%)',
-                      borderEndRadius: '1rem',
-                    },
-                  }}
-                  height="24px"
-                  value={item.community_strength}
-                />
-                <Box
-                  w="65px"
-                  borderRadius={4}
-                  textAlign="center"
-                  p="0.5rem"
-                  whiteSpace="nowrap"
-                  bg="black"
-                >
-                  {`${item.community_strength}%`}
-                </Box>
-              </Flex>
-            </Td>
-            <Td>{item.tvl}</Td>
-            <Td>
-              <Box
-                width="50px"
-                borderRadius={4}
-                textAlign="center"
-                p="0.5rem"
-                whiteSpace="nowrap"
-                bg="black"
-              >
-                {item.nft_average}
-              </Box>
-            </Td>
-            <Td>{item.unique_holders}</Td>
-            <Td>
-              <Flex alignItems="center">
-                <Progress
-                  borderTopLeftRadius="1rem"
-                  borderBottomLeftRadius="1rem"
-                  flex="auto"
-                  sx={{
-                    '& > div': {
-                      background:
-                        'linear-gradient(276deg, #0FE2DF 5.96%, #8870F2 86.08%, #9E5BF6 96.45%)',
-                      borderEndRadius: '1rem',
-                    },
-                  }}
-                  height="24px"
-                  value={item.grape_holder_score}
-                />
-                <Box
-                  w="65px"
-                  borderRadius={4}
-                  textAlign="center"
-                  p="0.5rem"
-                  whiteSpace="nowrap"
-                  bg="black"
-                >
-                  {`${item.grape_holder_score}%`}
-                </Box>
-              </Flex>
-            </Td>
-          </Tr>
-        ))}
-      </Tbody>
-      <TableCaption>
-        <Text>* Percentage of total NFTs held by the community</Text>
-        <Text>** The current floor price * number of NFTs held by community</Text>
-        <Text>
+  function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
+    return (
+      <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+        <Box sx={{ width: '100%', mr: 1 }}>
+          <LinearProgress variant="determinate" {...props} />
+        </Box>
+        <Box sx={{ minWidth: 35 }}>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>{`${Math.round(
+            props.value,
+          )}%`}</Typography>
+        </Box>
+      </Box>
+    );
+  }
+
+  const rows: GridRowsProp = dataRaw.map((item, key) => Object.assign({}, item, { id: key }));
+
+  const columns: GridColDef[] = [
+    {
+      field: 'name',
+      headerName: 'Collection',
+      minWidth: 200,
+      flex: 1,
+      renderCell: (params: any) => {
+        return (
+          <Stack sx={{ flexDirection: 'row', alignItems: 'center', width: '100%' }}>
+            <Avatar src={params.getValue(params.id, 'image')} alt={params.value} />
+            <Typography sx={{ ml: 2, whiteSpace: 'pre-wrap', lineHeight: 1.25 }}>
+              {params.value}
+            </Typography>
+          </Stack>
+        );
+      },
+    },
+    {
+      field: 'community_strength',
+      headerName: 'Grape Community Strength*',
+      minWidth: 210,
+      flex: 1,
+      renderCell: (params: any) => {
+        return <LinearProgressWithLabel value={params.value} />;
+      },
+    },
+    { field: 'tvl', headerName: 'TVL (SOL)**', minWidth: 150, flex: 1 },
+    { field: 'nft_average', headerName: 'NFTs Average', minWidth: 120, flex: 1 },
+    { field: 'unique_holders', headerName: 'Unique Holders', minWidth: 150, flex: 1 },
+    {
+      field: 'grape_holder_score',
+      headerName: 'Grape Holder Score',
+      minWidth: 200,
+      flex: 1,
+      renderCell: (params: any) => {
+        return <LinearProgressWithLabel value={params.value} />;
+      },
+    },
+  ];
+
+  function Footer() {
+    return (
+      <Box sx={{ p: 2, textAlign: 'center' }}>
+        <Typography>* Percentage of total NFTs held by the community</Typography>
+        <Typography>** The current floor price * number of NFTs held by community</Typography>
+        <Typography>
           *** Percentage of verified holders against overall holders who are members of the
           community
-        </Text>
-      </TableCaption>
-    </Table>
+        </Typography>
+      </Box>
+    );
+  }
+  const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
+    flexGrow: 1,
+    borderCollapse: 'separate',
+    borderSpacing: '0 1rem',
+    border: 'none',
+    '& .MuiDataGrid-columnHeader': {
+      textTransform: 'uppercase',
+    },
+    '& .MuiDataGrid-columnHeaderTitle': {
+      fontSize: '0.75rem',
+      fontWeight: 'bold',
+    },
+    '& .MuiDataGrid-columnHeader:focus-within,& .MuiDataGrid-columnHeader:focus': {
+      outline: 'none',
+    },
+    '& .MuiDataGrid-cell:focus-within, & .MuiDataGrid-cell:focus': {
+      outline: 'none',
+    },
+    '& .MuiDataGrid-row': {
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      margin: '1rem 0',
+      borderRadius: '60px',
+      '&:hover': {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      },
+    },
+    '& .MuiDataGrid-cell': {
+      border: 0,
+    },
+    '& .MuiDataGrid-iconSeparator': {
+      display: 'none',
+    },
+    '& .MuiDataGrid-columnHeaders': {
+      border: 0,
+    },
+  }));
+
+  return (
+    <StyledDataGrid
+      autoPageSize
+      rows={rows}
+      columns={columns}
+      disableSelectionOnClick
+      onCellClick={() => false}
+      components={{
+        Footer: Footer,
+      }}
+    />
   );
 };
 

@@ -1,11 +1,24 @@
-import type { AppProps } from 'next/app';
+import * as React from 'react';
 import Head from 'next/head';
-import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
-import theme from '../theme';
+import { AppProps } from 'next/app';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { CacheProvider, EmotionCache } from '@emotion/react';
+import { Global } from '@emotion/react';
+import theme from '../styles/theme';
+import globalStyles from '../styles/global';
+import createEmotionCache from '../utils/createEmotionCache';
 
-function App({ Component, pageProps }: AppProps) {
+const clientSideEmotionCache = createEmotionCache();
+
+interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
+
+export default function MyApp(props: MyAppProps) {
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (
-    <ChakraProvider theme={theme}>
+    <CacheProvider value={emotionCache}>
       <Head>
         <title>Grape Analytics Dashboard</title>
         <meta charSet="utf-8" />
@@ -13,10 +26,11 @@ function App({ Component, pageProps }: AppProps) {
         <meta name="description" content="Grape Analytics Dashboard" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <Component {...pageProps} />
-    </ChakraProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Global styles={globalStyles} />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
-
-export default App;
