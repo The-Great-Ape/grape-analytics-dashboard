@@ -12,6 +12,9 @@
   "dependencies": {
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
+    "@emotion/cache": "latest",
+    "@emotion/server": "latest",
+    "@mui/icons-material": "latest",
     "@mui/material": "^5.2.3",
     "@mui/x-data-grid": "^5.2.0",
     "next": "^12.0.3",

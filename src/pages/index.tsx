@@ -33,10 +33,8 @@ const Home: NextPage = () => {
           >
             Partner Report
           </Typography>
-          <Box sx={{ display: 'flex', flex: 1, height: '100%' }}>
-            <Box sx={{ flexGrow: 1 }}>
-              <DataTable />
-            </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, height: '100%' }}>
+            <DataTable />
           </Box>
         </Box>
       </Container>
@@ -48,8 +46,8 @@ const Home: NextPage = () => {
           mt: 'auto',
         }}
       >
-        <Container maxWidth="sm">
-          <Typography textAlign="center">
+        <Container sx={{ maxWidth: 'sm' }}>
+          <Typography sx={{ textAlign: 'center' }}>
             &copy; {new Date().getFullYear()} Grape Protocol
           </Typography>
         </Container>
