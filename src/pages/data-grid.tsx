@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-import GrapePartners from '../components/GrapePartners';
+import DataTable from '../components/DataTable';
 
 const Home: NextPage = () => {
   return (
@@ -34,7 +34,7 @@ const Home: NextPage = () => {
             Partner Report
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, height: '100%' }}>
-            <GrapePartners />
+            <DataTable />
           </Box>
         </Box>
       </Container>

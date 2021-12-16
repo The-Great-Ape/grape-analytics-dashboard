@@ -15,7 +15,7 @@ import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgres
 
 import { formatNumber } from '../utils/utils';
 
-import dataRaw from '../dataRaw.json';
+import dataRaw from '../../public/dataRaw.json';
 
 const DataTable = () => {
   function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
